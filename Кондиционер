@@ -1,0 +1,18 @@
+import time
+import wifi
+import smart_ac
+
+SSID = 'GALAXY'
+AC_IP = '198.168.1.16'
+
+def check_wifi():
+    networks = wifi.Cell.all('wlan0')
+    for network in networks:
+        if network.ssid == SSID:
+            return True
+    return False
+
+while True:
+    if check_wifi():
+        smart_ac.turn_on(AC_IP)
+    time.sleep(60)
